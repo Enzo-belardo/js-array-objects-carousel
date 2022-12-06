@@ -26,12 +26,16 @@ const images = [
    }
 ];
 
+let indexImage = 0
+
 const buttonPrevius = document.querySelector('.prevoius')
 const buttonNext = document.querySelector('.next')
 const image = document.querySelector('.carousel-image')
 
 
 images.forEach((element, index) => {
-   console.log(element, index)
+   const newElement = document.createElement('div');
+   newElement.innerHTML= `<img src = " ${element.image}" alt=" image ${index}"> `
+   image.appendChild(newElement)
 
 });

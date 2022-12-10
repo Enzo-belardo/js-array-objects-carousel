@@ -26,16 +26,42 @@ const images = [
    }
 ];
 
-let indexImage = 0
 
-const buttonPrevius = document.querySelector('.prevoius')
-const buttonNext = document.querySelector('.next')
-const image = document.querySelector('.carousel-image')
+const imageCaro = document.querySelector('div.carousel-image');
+let indexImage = 0;
 
 
 images.forEach((element, index) => {
-   const newElement = document.createElement('div');
-   newElement.innerHTML= `<img src = " ${element.image}" alt=" image ${index}"> `
-   image.appendChild(newElement)
-
+   imageCaro.innerHTML += 
+   `<div class="my_carousel-item">
+      <img src = " ${element.image}" alt=" image ${index}"> 
+      <h3>${element.title}</h3>
+      <p>${element.text}</p>
+   </div>` 
+   
 });
+
+document.getElementsByClassName('my_carousel-item')[indexImage].classList.add('active')
+
+//eventi
+const buttonNext = document.querySelector('div.button.next');  
+
+buttonNext.addEventListener("click", function(){
+   changeSlide(indexImage++);
+});
+
+const buttonPrevius = document.querySelector('div.button.previous');
+
+buttonPrevius.addEventListener("click", function(){  
+   changeSlide(indexImage--)
+  
+});
+
+
+//funzione
+function changeSlide(elementToShow){
+  document.querySelector('div.my_carousel-item.active').classList.remove('active');
+  document.getElementsByClassName('my_carousel-item')[elementToShow].classList.add('active');
+
+  return elementToShow;
+}

@@ -47,19 +47,26 @@ document.getElementsByClassName('my_carousel-item')[indexImage].classList.add('a
 const buttonNext = document.querySelector('div.button.next');  
 
 buttonNext.addEventListener("click", function(){
+   if(indexImage >= 5 ){
+      indexImage = 0 ;
+   }
    changeSlide(indexImage++);
 });
 
 const buttonPrevius = document.querySelector('div.button.previous');
 
-buttonPrevius.addEventListener("click", function(){  
-   changeSlide(indexImage--)
-  
+buttonPrevius.addEventListener("click", function(){
+   if(indexImage <= 0){
+      indexImage = 5;
+   }
+   changeSlide(indexImage--) 
+
 });
 
 
 //funzione
 function changeSlide(elementToShow){
+   
   document.querySelector('div.my_carousel-item.active').classList.remove('active');
   document.getElementsByClassName('my_carousel-item')[elementToShow].classList.add('active');
 
